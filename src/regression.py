@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-from sklearn import datasets, linear_model
+from sklearn import linear_model
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 
@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 df = pd.read_csv("../data/sgemm_preprocessed.csv")
 
 # Split in train and test
-x_train, x_test, y_train, y_test = train_test_split(df[df.columns[:-1]], df['Run (ms)'], test_size=0.1, random_state=42)
+x_train, x_test, y_train, y_test = train_test_split(df[df.columns[:-1]], df['Run (ms)'], test_size=0.1, random_state=32)
 
 # Train the model
 regr = linear_model.LinearRegression()
