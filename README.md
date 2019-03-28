@@ -19,10 +19,16 @@ To train a regression line model and then check its accuracy with a test, simply
 ```
 python3 regression.py
 ```
+This will print the accuracies obtained with the regressor and the coeficients used by the Regression Line Model.
 ### Regression
 To train a Decision Tree Regressor model and then check its accuracy with a test, simply open a terminal at the `src` directory and run the following command:
 ```
 python3 decisiontree.py
 ```
+This will print the accuracies obtained with the regressors and will safe a file named `tree5.dot` which contain a graphic representation of the Decision Tree Model. This file can be converted into a more accesible format like pdf using the following command:
+```
+dot -Tpdf tree5.dot -o tree.pdf
+```
+Note that this requires the package `graphviz`
 ## Purpose
 This project is done for the ADM subject from the MIRI of the UPC.
