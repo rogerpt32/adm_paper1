@@ -18,7 +18,7 @@ regr.fit(x_train, y_train)
 regr_5.fit(x_train, y_train)
 
 #tree.export_graphviz(regr,out_file='tree.dot') # warning this might be a big file
-tree.export_graphviz(regr_5,out_file='tree5.dot')
+tree.export_graphviz(regr_5,out_file='../doc/tree/tree5.dot')
 
 print('Regressor without restrictions')
 
