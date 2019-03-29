@@ -167,7 +167,7 @@ The first approach that we used to try to predict the execution time of the SGEM
 To get the model, first we split the model in two blocks: one for training (in this case 90\% of the data set) and the other to test (in this case 10\% of the data set) the accuracy later. Then we use the training part to fit the regression line model. Finally we use that model to predict the execution times of the test examples and we compare the results with the real values.
 \subsection{Results}
 The results from the Regression Line are not very satisfying. The mean square error that this model has in the training data is 80322.28, and obviously the mean square error in the testing data is even worse with a value of 82841.39. This lack of accuracy using a linear regression, might probably mean that our data is not linear. If we check the variance using the $R^2$-score, where a 1 means that the data fits perfectly to the regression line with no variance and a 0 means the opposite, we get a 0.41 in both train and test data. This confirms that this regression might not be a good solution.\\
-But in order to benefit from this model, we can check the coefficients that define the model. This coefficients multiply the correspondent input variables described in the Data Set section.
+But in order to benefit from this model, we can take a look to the coefficients that define the model. This coefficients multiply the correspondent input variables described in the Data Set section.
 \begin{itemize}
   \item 3.3280371
   \item 3.07243576
@@ -186,6 +186,28 @@ But in order to benefit from this model, we can check the coefficients that defi
 \end{itemize}
 With this we can see that as we predicted in the analysis of the data: MWG, NWG, KWG, KWI, SA and SB have a positive impact in the target (bigger input means bigger execution time), whereas MDIMC and NDIMC have a negative impact in the target (bigger input means smaller execution time).
 \section{Decision Tree Regressor Model}
+The second approach to fit the data to a model is using decision trees.
+\subsection{Implementation}
+The implementation of this method has followed a similar steps to the Regression Line Model. First we split the data in training (75\%) and test (25\%). Then with the training data we fitted two decision tree models, one without any restrictions and another with the depth limited to 5. After that we test the accuracy of both models with training and test data (separately).
+\subsection{Results}
+\begin{table}[htbp]
+\begin{tabular}{lcc}
+  \toprule
+  & Full DT model & DT max depth 5 \\
+  \midrule
+  Max Depth & 25 & 5 \\
+  Node Count & 481085 & 63 \\
+  MSE train & 3.55 & 31092.63 \\
+  $R^2$ train & 1 & 0.77 \\
+  MSE test & 8.39 & 30345.53 \\
+  $R^2$ test & 1 & 0.77 \\
+  \bottomrule
+\end{tabular}
+\caption{Results from the decision tree models}
+\label{tab:dt}
+\end{table}
+The model trained without restrictions have a great accuracy since the mean square error in training is only 3.55 and in test is 8.39. But this impressive accuracy is basically consequence of a huge overfitting. If we check the depth and the number of nodes of the model (see table \ref{tab:dt}), we can see that basically the model has probably almost one leaf for each possible configuration. Technically since we have all the possible configurations encoded in this decision tree, the results will be always accurate, but if we want to extract useful information from this model it will be very hard.\\
+To analyse easily the impact of the variables we use the model trained with the maximum depth fixed to 5. This restriction reduce the depth from the previous model to 5 and the node count to only 63. Taking a look to the values of each decision node (see the file \textit{doc/tree/tree.pdf} from the githb repository given in the abstract) we can see that only a few variables are used. The variables used are: MWG, NWG, MDIMC, NDIMC and SA. These confirm again what we saw at the analysis of the data where the mentioned variables were the ones with more importance on the final result. The accuracy of this reduced model is worse than the full one (see table \ref{tab:dt}), which is obvious since we are only using 5 variables and not checking all the configurations, but still it has a better accuracy than the simple regression line.
 \section{Conclusions}
 
 \bibliographystyle{unsrt}
