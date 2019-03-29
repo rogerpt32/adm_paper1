@@ -1,0 +1,13 @@
+\begin{thebibliography}{1}
+
+\bibitem{dataset-url}
+E.~{G. Paredes} and R.~{Ballester-Ripoll}.
+\newblock Sgemm gpu kernel performance data set, 2018.
+
+\bibitem{dataset-paper}
+C.~{Nugteren} and V.~{Codreanu}.
+\newblock Cltune: A generic auto-tuner for opencl kernels.
+\newblock In {\em 2015 IEEE 9th International Symposium on Embedded
+  Multicore/Many-core Systems-on-Chip}, pages 195--202, Sep. 2015.
+
+\end{thebibliography}
